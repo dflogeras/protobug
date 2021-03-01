@@ -1,9 +1,9 @@
-protoc poc.proto -cpp_out=.
-mkdir build
-cd build
-CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Debug ..
-make
-./tester
+ * protoc poc.proto -cpp_out=.
+ * mkdir build
+ * cd build
+ * CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Debug ..
+ * make
+ * ./tester
 
  - See valgrind.out, gdb.out for summaries.
  - Running armv7a-unknown-linux-gnueabihf on cubieboard2 (sunxi A20)
