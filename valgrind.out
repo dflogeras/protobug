@@ -1,0 +1,57 @@
+==16268== Memcheck, a memory error detector
+==16268== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==16268== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==16268== Command: ./tester
+==16268== 
+==16268== Invalid read of size 1
+==16268==    at 0x1A58C: google::protobuf::internal::ArenaImpl::record_allocs() const (arena_impl.h:352)
+==16268==    by 0x1A4F3: google::protobuf::internal::ArenaImpl::RecordAlloc(std::type_info const*, unsigned int) const (arena_impl.h:316)
+==16268==    by 0x48E64EB: AllocateInternal<std::__cxx11::basic_string<char> > (arena.h:491)
+==16268==    by 0x48E64EB: DoCreate<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:571)
+==16268==    by 0x48E64EB: CreateInternal<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:477)
+==16268==    by 0x48E64EB: DoCreateMaybeMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:525)
+==16268==    by 0x48E64EB: CreateMaybeMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:531)
+==16268==    by 0x48E64EB: CreateNoMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:551)
+==16268==    by 0x48E64EB: Create<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:293)
+==16268==    by 0x48E64EB: google::protobuf::internal::ArenaStringPtr::Set(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, google::protobuf::Arena*) (arenastring.cc:80)
+==16268==    by 0x48E66CB: google::protobuf::internal::ArenaStringPtr::Set(google::protobuf::internal::ArenaStringPtr::EmptyDefault, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, google::protobuf::Arena*) (arenastring.cc:99)
+==16268==    by 0x165F7: rom_id::set_id(char const*) (poc.pb.h:365)
+==16268==    by 0x16473: main (main.cpp:5)
+==16268==  Address 0x3c0e6310 is not stack'd, malloc'd or (recently) free'd
+==16268== 
+==16268== 
+==16268== Process terminating with default action of signal 11 (SIGSEGV)
+==16268==  Access not within mapped region at address 0x3C0E6310
+==16268==    at 0x1A58C: google::protobuf::internal::ArenaImpl::record_allocs() const (arena_impl.h:352)
+==16268==    by 0x1A4F3: google::protobuf::internal::ArenaImpl::RecordAlloc(std::type_info const*, unsigned int) const (arena_impl.h:316)
+==16268==    by 0x48E64EB: AllocateInternal<std::__cxx11::basic_string<char> > (arena.h:491)
+==16268==    by 0x48E64EB: DoCreate<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:571)
+==16268==    by 0x48E64EB: CreateInternal<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:477)
+==16268==    by 0x48E64EB: DoCreateMaybeMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:525)
+==16268==    by 0x48E64EB: CreateMaybeMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:531)
+==16268==    by 0x48E64EB: CreateNoMessage<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:551)
+==16268==    by 0x48E64EB: Create<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (arena.h:293)
+==16268==    by 0x48E64EB: google::protobuf::internal::ArenaStringPtr::Set(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, google::protobuf::Arena*) (arenastring.cc:80)
+==16268==    by 0x48E66CB: google::protobuf::internal::ArenaStringPtr::Set(google::protobuf::internal::ArenaStringPtr::EmptyDefault, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&, google::protobuf::Arena*) (arenastring.cc:99)
+==16268==    by 0x165F7: rom_id::set_id(char const*) (poc.pb.h:365)
+==16268==    by 0x16473: main (main.cpp:5)
+==16268==  If you believe this happened as a result of a stack
+==16268==  overflow in your program's main thread (unlikely but
+==16268==  possible), you can try to increase the size of the
+==16268==  main thread stack using the --main-stacksize= flag.
+==16268==  The main thread stack size used in this run was 8388608.
+==16268== 
+==16268== HEAP SUMMARY:
+==16268==     in use at exit: 624 bytes in 5 blocks
+==16268==   total heap usage: 8 allocs, 3 frees, 20,872 bytes allocated
+==16268== 
+==16268== LEAK SUMMARY:
+==16268==    definitely lost: 0 bytes in 0 blocks
+==16268==    indirectly lost: 0 bytes in 0 blocks
+==16268==      possibly lost: 0 bytes in 0 blocks
+==16268==    still reachable: 624 bytes in 5 blocks
+==16268==         suppressed: 0 bytes in 0 blocks
+==16268== Rerun with --leak-check=full to see details of leaked memory
+==16268== 
+==16268== For lists of detected and suppressed errors, rerun with: -s
+==16268== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

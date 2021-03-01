@@ -1,0 +1,10 @@
+option optimize_for = LITE_RUNTIME;
+
+message rom_id {
+  required bytes id = 1;
+}
+
+message enumerate_resp {
+  repeated rom_id rom = 1;
+}
+
